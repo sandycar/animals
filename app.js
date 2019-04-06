@@ -20,7 +20,7 @@ connection.connect();
 // 	});
 // });
 
-app.get('/animals.json', function(req, res){
+app.get('/animals', function(req, res){
 	connection.query('SELECT * FROM animals', function (error, results, fields) {
 	  if (error) res.send(error)
 	  else res.json(results);
