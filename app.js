@@ -29,34 +29,39 @@ app.get('/animals.json', function(req, res){
 
 // http://localhost:3001/actors-insert?actor_name=bobbi
 
-app.get('/animals-insert', function(req, res){
+app.post('/animals', function(req, res){
 	connection.query('INSERT INTO animals (animal_name) VALUES (?)', [req.query.animal_name],function (error, results, fields) {
 	  if (error) res.send(error)
-	  else res.json({
-	  	message: 'success'
-	  });
+	  else res.redirect('/');
+	  
+	});
+});
+
+app.get('*', function(req, res){
+	connection.query('INSERT INTO animals (animal_name) VALUES (?)', [req.query.animal_name],function (error, results, fields) {
+	  res.redirect('/')
 	});
 });
 
 // http://localhost:3001/actors-delete?cat_id=3
 // what will the delete route look like in this app.js file
-app.get('/animals-delete', function(req, res){
-	connection.query('DELETE FROM animals WHERE id = (?)', [req.query.animal_id],function (error, results, fields) {
+// app.get('/animals-delete', function(req, res){
+// 	connection.query('DELETE FROM animals WHERE id = (?)', [req.query.animal_id],function (error, results, fields) {
 	  
-	  res.redirect('/');
+// 	  res.redirect('/');
 	
-	});
-});
+// 	});
+// });
 
-// one way
-	// http://localhost:3001/actors-update/6?actor_name=tom%20cruz
-	app.get('/animals-update/:id', function(req, res){
-		connection.query('UPDATE animals SET animal_name = (?) WHERE id = (?)', [req.query.animal_name, req.params.id],function (error, results, fields) {
+// // one way
+// 	// http://localhost:3001/actors-update/6?actor_name=tom%20cruz
+// 	app.get('/animals-update/:id', function(req, res){
+// 		connection.query('UPDATE animals SET animal_name = (?) WHERE id = (?)', [req.query.animal_name, req.params.id],function (error, results, fields) {
 		  
-		  res.redirect('/');
+// 		  res.redirect('/');
 		
-		});
-	});
+// 		});
+// 	});
 
 // another way
 	// http://localhost:3001/cats-update?cat_name=dragon&cat_id=4
