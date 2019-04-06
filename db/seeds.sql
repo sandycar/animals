@@ -1,0 +1,1 @@
+INSERT INTO animals(animal_name) VALUES ('chicken'), ('dog'), ('goat'), ('duck'), ('shark');
